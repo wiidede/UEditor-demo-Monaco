@@ -1,46 +1,49 @@
-<script setup lang="ts" generic="T extends any, O extends any">
-defineOptions({
-  name: 'IndexPage',
+<script lang="ts" setup>
+const ue = ref('')
+const mo = ref('')
+
+function mini(val: string | undefined) {
+  if (!val)
+    return ''
+  return window.minify(val, {
+    collapseWhitespace: true,
+  })
+}
+
+watch(ue, (val, oldVal) => {
+  const minVal = mini(val)
+  const minOldVal = mini(oldVal)
+  const minMo = mini(mo.value)
+  if (minVal !== minOldVal && minVal !== minMo)
+    mo.value = val
+}, {
+  immediate: true,
 })
 
-const name = ref('')
-
-const router = useRouter()
-function go() {
-  if (name.value)
-    router.push(`/hi/${encodeURIComponent(name.value)}`)
-}
+watch(mo, async (val, oldVal) => {
+  const minVal = mini(val)
+  const minOldVal = mini(oldVal)
+  const minUe = mini(ue.value)
+  if (minVal !== minOldVal && minVal !== minUe)
+    ue.value = minVal
+}, {
+  immediate: true,
+})
 </script>
 
 <template>
-  <div>
-    <div i-carbon-campsite inline-block text-4xl />
-    <p>
-      <a rel="noreferrer" href="https://github.com/antfu/vitesse-lite" target="_blank">
-        Vitesse Lite
-      </a>
-    </p>
-    <p>
-      <em text-sm op75>Opinionated Vite Starter Template</em>
-    </p>
-
-    <div py-4 />
-
-    <TheInput
-      v-model="name"
-      placeholder="What's your name?"
-      autocomplete="false"
-      @keydown.enter="go"
-    />
-
-    <div>
-      <button
-        class="m-3 text-sm btn"
-        :disabled="!name"
-        @click="go"
-      >
-        Go
-      </button>
+  <div h-full flex gap1>
+    <div of-x-hidden of-y-auto>
+      <div w-798px flex-1>
+        <UEditor v-model="ue" />
+      </div>
+    </div>
+    <div h-full min-w0 flex-auto b-1>
+      <Monaco :value="mo" @change="mo = $event" />
     </div>
   </div>
 </template>
+
+<style  scoped>
+
+</style>

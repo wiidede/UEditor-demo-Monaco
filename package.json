@@ -14,12 +14,16 @@
   },
   "dependencies": {
     "@vueuse/core": "^10.6.1",
+    "html-minifier": "^4.0.0",
+    "monaco-editor": "^0.44.0",
     "vue": "^3.3.8",
-    "vue-router": "^4.2.5"
+    "vue-router": "^4.2.5",
+    "vue-ueditor-wrap": "3.x"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.0.0",
     "@iconify-json/carbon": "^1.1.21",
+    "@types/html-minifier": "^4.0.5",
     "@types/node": "^20.9.2",
     "@unocss/eslint-config": "^0.57.6",
     "@unocss/eslint-plugin": "^0.57.6",
