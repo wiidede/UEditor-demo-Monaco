@@ -5,8 +5,8 @@ const model = defineModel<string>()
 
 const MonacoRef = ref<InstanceType<typeof Monaco>>()
 
-const wordWrap = useLocalStorage('wordWrap', false)
-const autoFormat = useLocalStorage('autoFormat', false)
+const wordWrap = useLocalStorage('wordWrap', true)
+const autoFormat = useLocalStorage('autoFormat', true)
 const { isFocused } = useMonacoState()
 
 function trigger(command: string, payload?: any) {
