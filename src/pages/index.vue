@@ -2,6 +2,8 @@
 const ue = ref('')
 const mo = ref('')
 
+const { isFocused: isMoFocused } = useMonacoState()
+
 function mini(val: string | undefined) {
   if (!val)
     return ''
@@ -11,6 +13,8 @@ function mini(val: string | undefined) {
 }
 
 watch(ue, (val, oldVal) => {
+  if (isMoFocused.value)
+    return
   const minVal = mini(val)
   const minOldVal = mini(oldVal)
   const minMo = mini(mo.value)
@@ -39,7 +43,7 @@ watch(mo, async (val, oldVal) => {
       </div>
     </div>
     <div h-full min-w0 flex-auto b-1>
-      <Monaco :value="mo" @change="mo = $event" />
+      <MonacoWrapper v-model="mo" />
     </div>
   </div>
 </template>
