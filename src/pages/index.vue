@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const ue = ref('<div style="width:600px;margin:auto;"><h1 style="text-align:center;line-height:200%;font-size:16px">UEditor preview</h1><div style="height:100px;background:green;opacity:10%;"></div></div>')
+const ue = ref('<div style="width:600px;margin:auto;"><h1 style="text-align:center;line-height:200%;font-size:16px">UEditor Monaco</h1><div style="height:100px;background:green;opacity:10%;"></div></div>')
 const mo = ref('')
 
 const { isFocused: isMoFocused } = useMonacoState()
